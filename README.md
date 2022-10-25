@@ -1,7 +1,6 @@
 Unit 11: Group Milestone - README
 ===
 
-
 # Job Scheduler
 
 ## Table of Contents
@@ -51,10 +50,6 @@ The job scheduler app is designed to track, organize, and manage the different j
 * User employee clicks on a job from the job listing and gets redirected to the job details view. User can complete or set an in-progress individual tasks and or complete the whole job by clicking the corresponding buttons. Once a job is completed, it won’t be visible in the job listing for that user. A task should have an identity such as having an id, name, and status so that both employees and managers can view the state of a task and know which job it is correlated with. As an employee, I want to be able to change the status of the tasks in each job so that I can report the progress of the overall job.
 
 
-
-
-
-
 **Optional Nice-to-have Stories**
 
 * User can request for more jobs to be assigned
@@ -62,8 +57,6 @@ The job scheduler app is designed to track, organize, and manage the different j
 * User can view their profile
 * User manager can cancel a job
 * As an employee, I want to be able to add photos to a completed job to show proof of completion so that the manager can see the completed job
-
-
 
 ### 2. Screen Archetypes
 
@@ -91,7 +84,6 @@ like name, date assigned, tasks list. Users can complete a task and or a job fro
 
 * Job Photos Screen
    * Allows users to see the list of photos for a particular job. Users have the ability to upload a new photo for said job.
-
 
 ### 3. Navigation
 
@@ -124,12 +116,11 @@ Employee
 * Job Details View -> Job Photos View
 
 
-
 ## Wireframes
-[Add picture of your hand sketched wireframes in this section]
 <img src="https://i.imgur.com/Pvbu8YX.png" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
+<img src="https://i.imgur.com/Pvbu8YX.png" width=600>
 
 ### [BONUS] Interactive Prototype
 
