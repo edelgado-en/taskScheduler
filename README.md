@@ -117,10 +117,10 @@ Employee
 
 
 ## Wireframes
-<img src="https://i.imgur.com/Pvbu8YX.png" width=600>
+<img src="https://i.imgur.com/b9r5YGN.png" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
-<img src="https://i.imgur.com/Pvbu8YX.png" width=600>
+<img src="https://i.imgur.com/b9r5YGN.png" width=600>
 
 ### [BONUS] Interactive Prototype
 
