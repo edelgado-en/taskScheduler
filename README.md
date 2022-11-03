@@ -125,9 +125,84 @@ Employee
 ### [BONUS] Interactive Prototype
 
 ## Schema 
-[This section will be completed in Unit 9]
 ### Models
-[Add table of models]
+#### User
+
+   | Property   | Type     | Description |
+   | ---------- | ---------| ------------|
+   | objectId   | String   | unique id for the user (default field) |
+   | createdAt  | DateTime | date when user is created (default field) |
+   | updatedAt  | DateTime | date when user is last updated (default field) |   
+   | username   | String   | the user’s username (required)  |
+   | password   | String   | the user’s password (required) |
+   | first_name | String   | the user’s first name (required) |
+   | last_name  | String   | the user’s last name (required) |
+   | manager    | Boolean  | true is the user is a manager. Default is False (required) |
+   | email      | String   | the email associated with the user |
+
+#### Job
+
+   | Property     | Type         | Description |
+   | -------------| ------------ | ------------|
+   | objectId     | String       | unique id for the job entry (default field) |
+   | createdAt    | DateTime     | date when user is created (default field) |
+   | updatedAt    | DateTime     | date when user is last updated (default field) |   
+   | name         | String       | the job’s name (required)  |
+   | description  | String       | the job’s description |
+   | status       | String       | created, assigned, in-progress, completed (required) |
+   | due_date     | DateTime     | date when job should be completed |
+   | is_completed | Boolean      | true is the job is completed. Default is False (required) |
+   | assigned_to  | Pointer to User| to which user this job is assigned to |
+   | created_by   | Pointer to User| which user created this job|
+
+#### Task
+
+   | Property     | Type     | Description |
+   | -------------| ---------| ------------|
+   | objectId     | String   | unique id for the task entry (default field) |
+   | createdAt    | DateTime | date when user is created (default field) |
+   | updatedAt    | DateTime | date when user is last updated (default field) |   
+   | name         | String   | the task’s name (required)  |
+   | job_id       | Pointer to Job | the job associated with this task (required) |
+   | status       | String   | created, assigned, in-progress, completed (required) |
+   | is_completed | Boolean  | true is the task is completed. Default is False (required) |
+
+
+#### JobComment
+
+   | Property  | Type           | Description |
+   | ----------| ------------   | ----------------|
+   | objectId  | String         | unique id for the comment entry (default field) |
+   | createdAt | DateTime       | date when user is created (default field) |
+   | updatedAt | DateTime       | date when user is last updated (default field) |   
+   | comment   | String         | the comment (required)  |
+   | job_id    | Pointer to Job | the job associated with this task (required) |
+   | user_id   | Pointer to User| user that created the comment|
+
+
+#### JobPhoto
+
+   | Property  | Type           | Description |
+   | ----------| -------------- | ----------------|
+   | objectId  | String         | unique id for the job photo entry (default field) |
+   | createdAt | DateTime       | date when user is created (default field) |
+   | updatedAt | DateTime       | date when user is last updated (default field) |   
+   | photo     | File           | the photo that the user uploads  |
+   | job_id    | Pointer to Job | the job associated with this task (required) |
+   | user_id   | Pointer to User| user that created the comment|
+
+
+#### JobActivity
+
+   | Property   | Type           | Description |
+   | -----------| -------------- | ----------------|
+   | objectId   | String         | unique id for the activity entry (default field) |
+   | createdAt  | DateTime       | date when activity is created (default field) |
+   | type       | String         | the type of activity. Same as job status options  |
+   | job_id     | Pointer to Job | the job associated with this activity (required) |
+   | user_id    | Pointer to User| user that created the activity|
+
+
 ### Networking
 - [Add list of network requests by screen ]
 - [Create basic snippets for each Parse network request]
