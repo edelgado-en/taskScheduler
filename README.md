@@ -203,8 +203,249 @@ Employee
    | user_id    | Pointer to User| user that created the activity|
 
 
-### Networking
-- [Add list of network requests by screen ]
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
 
+### Networking
+#### List of network requests by screen
+
+- Login Screen
+      - (POST) The username and password will be pass as part of the request body
+        
+        ```swift
+        let username = username.Field.text!
+        let password = passwordField.text!
+
+        PFUser.logInWithUsername(inBackground: username, password: password){ 
+        (user, error) in
+            if user =! nil {
+                self.performSegue(withIdentifier: “loginSegue”, sender: nil)
+            } else {
+                print(“Error: \(String(describing: error))”)
+            }
+        }
+        ```
+
+- Signup Screen
+      - (POST) The user details information will be pass as part of the request body.
+                This information includes: first name, last name, username, email, password, confirm password, and account type (manager or employee)
+        
+        ```swift
+        let date = Date()
+        let df = DateFormatter() df.dateFormat = "MM/dd/yyyy HH:mm:ss" 
+        let dateTime = df.string(from: date)
+
+        let user = PFObject()
+        user.firstName = firstNameField.text
+        user.lastName = lastNameField.text
+        user.username = username.Field.text
+        user.password = passwordField.text
+        user.confirmPassword = confirmPasswordField.text
+        user.email = emailField.text
+        user.accountType = accountType.text
+            user.objectId = NSUUID().uuidString
+            user.createdAt = dateTime
+            user.updatedAt = dateTime
+
+
+        user.signUpInBackground{(success, error) in
+            if success {
+                self.performSegue(withIdentifier: “loginSegue”, sender: nil)
+            } else {
+                print(“Error: \(String(describing: error))”)
+            }
+        }
+        ```
+
+
+- Job List Screen
+      - (Read/GET) Query all jobs if user is manager
+         
+         ```swift
+         let query = PFQuery(className:"Jobs")
+         query.order(byDescending: "createdAt")
+         query.findObjectsInBackground { (jobs: [PFObject]?, error: Error?) in
+            if let error = error { 
+               print(error.localizedDescription)
+            } else if let jobs = jobs {
+               print("Successfully retrieved \(jobs.count) jobs.")
+           // TODO: Show the list of jobs in the view...
+            }
+         }
+         ```
+         
+      - (Read/GET) Query only the jobs assigned to the user if the user is an employee
+         
+         ```swift
+         let query = PFQuery(className:"Jobs")
+         query.whereKey("assigned_to", equalTo: currentUser)
+         query.order(byDescending: "createdAt")
+         query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) in
+            if let error = error { 
+               print(error.localizedDescription)
+            } else if let jobs = jobs {
+               print("Successfully retrieved \(jobs.count) jobs.")
+           // TODO: Show the list of jobs in the view...
+            }
+         }
+         ```
+         
+      - (Read/GET) Search by filter (name)
+
+        ```swift
+        let query = PFQuery(className:"Jobs")
+        query.whereKey("name", equalTo: searchField.text!)
+        query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let objects = objects {
+                print("Successfully retrieved \(objects.count) scores.")
+                for object in objects {
+                    print(object.objectId as Any)
+                }
+            }
+        }
+        ```
+  
+- Create Job Screen
+      - (Create/POST) Create a new job object. We will pass the following as part of the request body: name, description, due date, assigned to, list of tasks
+
+        ```swift
+        let job = PFObject(className: “Jobs”)
+        job[“name”] = nameField.text!
+        job[“description”] = descriptionField.text!
+        job[“status”] = statusField.text!
+        job[“due_date”] = dueDateField.text!
+        job[“tasks”] = tasksField.text!
+
+        job.saveInBackground {(success, error) in
+            If success {
+                print(“Successful”)
+            } else {
+                print(“Error”)
+        }
+        ```
+
+
+- Job Activity Screen
+      - (Read/GET) Fetches the activity for a specific job id
+        
+        ```swift
+        let query = PFQuery(className:"JobActivity ")
+        query.whereKey("objectId", equalTo: objectIdField.text!)
+        query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                print(object)
+        }
+        ```
+
+
+- Job Details Screen
+      - (Read/GET) Fetches the details for a specific job id
+
+        ```swift
+        let query = PFQuery(className: “Jobs”)
+        query.whereKey(“objectId”, equalTo: objectIdField.text!)
+        query.findObjectsInBackground{ (objects: [PFObject]?, error: Error?) in
+            If let error = error {
+                print(error.localizedDescription)
+            } else {
+                print(object)
+            }
+        }
+        ```
+
+
+      - (Update/PATCH) Manager users can manually update the status of a job
+    
+        ```swift
+        let query = PFQuery(className:"Jobs")
+        query.getObjectInBackground(withId: objectIdField.text!) { (job: PFObject?,     error: Error?) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let job = job {
+                job[“status”] = statusField.text!
+                job["updatedAt"] = descriptionField.text!
+                job.saveInBackground()
+            }
+        }
+        ```
+
+
+      -(Update/PATCH) Manager users can update the description field
+        
+        ```swift
+        let date = Date()
+        let df = DateFormatter() df.dateFormat = "MM/dd/yyyy HH:mm:ss" 
+        let dateTime = df.string(from: date)
+        let query = PFQuery(className:"Jobs")
+
+        query.getObjectInBackground(withId: objectIdField.text!) { (job: PFObject?,     error: Error?) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let job = job {
+                job["description"] = descriptionField.text!
+                job["updatedAt"] = dateTime
+                job.saveInBackground()
+            }
+        }
+        ```
+
+
+      - (Update/ PATCH) Users assigned to this job can update the status of a task 
+         
+         ```swift
+         let date = Date()
+         let df = DateFormatter() df.dateFormat = "MM/dd/yyyy HH:mm:ss" 
+         let dateTime = df.string(from: date)
+         let query = PFQuery(className:"Jobs")
+
+        query.getObjectInBackground(withId: objectIdField.text!) { (job: PFObject?,     error: Error?) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let job = job {
+                job[“status”] = statusField.text!
+                job["updatedAt"] = dateTime
+                job.saveInBackground()
+            }
+        }
+        ```
+
+
+- Job Comments Screen
+      - (Read/GET) Get all the job comments for the selected job id
+
+        ```swift
+        let query = PFQuery(className: “JobComment”)
+        query.whereKey(“job_id” equalTo: Job.objectId)
+        query.order(byDescending: "createdAt")
+        query.findObjectsInBackground{ (objects: [PFObject]?, error: Error?) in
+            If let error = error {
+                print(error.localizedDescription)
+            } else {
+                print(object)
+            }
+        }
+        ```
+
+      - (Create/POST) Create a new comment for the selected job id
+        
+        ```swift
+        let date = Date()
+        let df = DateFormatter() df.dateFormat = "MM/dd/yyyy HH:mm:ss" 
+        let dateTime = df.string(from: date)
+
+        let comment = PFObject(className: “JobComment”)
+        comment [“objectId ”] = NSUUID().uuidString
+        comment [“createdAt  ”] = dateTime 
+        comment [“job_id ”] = job.job_id
+        comment [“user_id ”] = job.user_id
+        comment [“comment”] = commentField.text!
+
+        commment.saveInBackground {(success, error) in
+            If success {
+                print(“Successful”)
+            } else {
+                print(“Error”)
+        }
+        ```
