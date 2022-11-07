@@ -206,23 +206,23 @@ Employee
 
 ### Networking
 #### List of network requests by screen
-    - Login Screen
-          - (POST) The username and password will be pass as part of the request body
-            ```swift
-            let username = username.Field.text!
-            let password = passwordField.text!
+   - Login Screen
+      - (POST) The username and password will be pass as part of the request body
+        ```swift
+        let username = username.Field.text!
+        let password = passwordField.text!
 
-            PFUser.logInWithUsername(inBackground: username, password: password){ 
-            (user, error) in
-                if user =! nil {
-                    self.performSegue(withIdentifier: “loginSegue”, sender: nil)
-                } else {
-                    print(“Error: \(String(describing: error))”)
-                }
+        PFUser.logInWithUsername(inBackground: username, password: password){ 
+        (user, error) in
+            if user =! nil {
+                self.performSegue(withIdentifier: “loginSegue”, sender: nil)
+            } else {
+                print(“Error: \(String(describing: error))”)
             }
-            ```
+        }
+        ```
 
-    - Signup Screen
+   - Signup Screen
        - (POST) The user details information will be pass as part of the request body.
                     This information includes: first name, last name, username, email, password, confirm password, and account type (manager or employee)
             ```swift
@@ -251,7 +251,6 @@ Employee
                 }
             }
             ```
-
 
     - Job List Screen
       - (Read/GET) Query all jobs if user is manager
