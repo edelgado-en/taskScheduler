@@ -206,59 +206,55 @@ Employee
 
 ### Networking
 #### List of network requests by screen
+    - Login Screen
+          - (POST) The username and password will be pass as part of the request body
+            ```swift
+            let username = username.Field.text!
+            let password = passwordField.text!
 
-- Login Screen
-      - (POST) The username and password will be pass as part of the request body
-        
-        ```swift
-        let username = username.Field.text!
-        let password = passwordField.text!
-
-        PFUser.logInWithUsername(inBackground: username, password: password){ 
-        (user, error) in
-            if user =! nil {
-                self.performSegue(withIdentifier: “loginSegue”, sender: nil)
-            } else {
-                print(“Error: \(String(describing: error))”)
+            PFUser.logInWithUsername(inBackground: username, password: password){ 
+            (user, error) in
+                if user =! nil {
+                    self.performSegue(withIdentifier: “loginSegue”, sender: nil)
+                } else {
+                    print(“Error: \(String(describing: error))”)
+                }
             }
-        }
-        ```
+            ```
 
-- Signup Screen
-      - (POST) The user details information will be pass as part of the request body.
-                This information includes: first name, last name, username, email, password, confirm password, and account type (manager or employee)
-        
-        ```swift
-        let date = Date()
-        let df = DateFormatter() df.dateFormat = "MM/dd/yyyy HH:mm:ss" 
-        let dateTime = df.string(from: date)
+    - Signup Screen
+       - (POST) The user details information will be pass as part of the request body.
+                    This information includes: first name, last name, username, email, password, confirm password, and account type (manager or employee)
+            ```swift
+            let date = Date()
+            let df = DateFormatter() df.dateFormat = "MM/dd/yyyy HH:mm:ss" 
+            let dateTime = df.string(from: date)
 
-        let user = PFObject()
-        user.firstName = firstNameField.text
-        user.lastName = lastNameField.text
-        user.username = username.Field.text
-        user.password = passwordField.text
-        user.confirmPassword = confirmPasswordField.text
-        user.email = emailField.text
-        user.accountType = accountType.text
-            user.objectId = NSUUID().uuidString
-            user.createdAt = dateTime
-            user.updatedAt = dateTime
+            let user = PFObject()
+            user.firstName = firstNameField.text
+            user.lastName = lastNameField.text
+            user.username = username.Field.text
+            user.password = passwordField.text
+            user.confirmPassword = confirmPasswordField.text
+            user.email = emailField.text
+            user.accountType = accountType.text
+                user.objectId = NSUUID().uuidString
+                user.createdAt = dateTime
+                user.updatedAt = dateTime
 
 
-        user.signUpInBackground{(success, error) in
-            if success {
-                self.performSegue(withIdentifier: “loginSegue”, sender: nil)
-            } else {
-                print(“Error: \(String(describing: error))”)
+            user.signUpInBackground{(success, error) in
+                if success {
+                    self.performSegue(withIdentifier: “loginSegue”, sender: nil)
+                } else {
+                    print(“Error: \(String(describing: error))”)
+                }
             }
-        }
-        ```
+            ```
 
 
-- Job List Screen
+    - Job List Screen
       - (Read/GET) Query all jobs if user is manager
-         
          ```swift
          let query = PFQuery(className:"Jobs")
          query.order(byDescending: "createdAt")
@@ -273,7 +269,6 @@ Employee
          ```
          
       - (Read/GET) Query only the jobs assigned to the user if the user is an employee
-         
          ```swift
          let query = PFQuery(className:"Jobs")
          query.whereKey("assigned_to", equalTo: currentUser)
@@ -289,7 +284,6 @@ Employee
          ```
          
       - (Read/GET) Search by filter (name)
-
         ```swift
         let query = PFQuery(className:"Jobs")
         query.whereKey("name", equalTo: searchField.text!)
@@ -304,30 +298,28 @@ Employee
             }
         }
         ```
-  
-- Create Job Screen
-      - (Create/POST) Create a new job object. We will pass the following as part of the request body: name, description, due date, assigned to, list of tasks
+      
+    - Create Job Screen
+          - (Create/POST) Create a new job object. We will pass the following as part of the request body: name, description, due date, assigned to, list of tasks
+            ```swift
+            let job = PFObject(className: “Jobs”)
+            job[“name”] = nameField.text!
+            job[“description”] = descriptionField.text!
+            job[“status”] = statusField.text!
+            job[“due_date”] = dueDateField.text!
+            job[“tasks”] = tasksField.text!
 
-        ```swift
-        let job = PFObject(className: “Jobs”)
-        job[“name”] = nameField.text!
-        job[“description”] = descriptionField.text!
-        job[“status”] = statusField.text!
-        job[“due_date”] = dueDateField.text!
-        job[“tasks”] = tasksField.text!
-
-        job.saveInBackground {(success, error) in
-            If success {
-                print(“Successful”)
-            } else {
-                print(“Error”)
-        }
-        ```
+            job.saveInBackground {(success, error) in
+                If success {
+                    print(“Successful”)
+                } else {
+                    print(“Error”)
+            }
+            ```
 
 
-- Job Activity Screen
-      - (Read/GET) Fetches the activity for a specific job id
-        
+    - Job Activity Screen
+      - (Read/GET) Fetches the activity for a specific job id=
         ```swift
         let query = PFQuery(className:"JobActivity ")
         query.whereKey("objectId", equalTo: objectIdField.text!)
@@ -340,9 +332,8 @@ Employee
         ```
 
 
-- Job Details Screen
+    - Job Details Screen
       - (Read/GET) Fetches the details for a specific job id
-
         ```swift
         let query = PFQuery(className: “Jobs”)
         query.whereKey(“objectId”, equalTo: objectIdField.text!)
@@ -357,7 +348,6 @@ Employee
 
 
       - (Update/PATCH) Manager users can manually update the status of a job
-    
         ```swift
         let query = PFQuery(className:"Jobs")
         query.getObjectInBackground(withId: objectIdField.text!) { (job: PFObject?,     error: Error?) in
@@ -373,7 +363,6 @@ Employee
 
 
       -(Update/PATCH) Manager users can update the description field
-        
         ```swift
         let date = Date()
         let df = DateFormatter() df.dateFormat = "MM/dd/yyyy HH:mm:ss" 
@@ -393,7 +382,6 @@ Employee
 
 
       - (Update/ PATCH) Users assigned to this job can update the status of a task 
-         
          ```swift
          let date = Date()
          let df = DateFormatter() df.dateFormat = "MM/dd/yyyy HH:mm:ss" 
@@ -412,9 +400,8 @@ Employee
         ```
 
 
-- Job Comments Screen
+    - Job Comments Screen
       - (Read/GET) Get all the job comments for the selected job id
-
         ```swift
         let query = PFQuery(className: “JobComment”)
         query.whereKey(“job_id” equalTo: Job.objectId)
@@ -429,7 +416,6 @@ Employee
         ```
 
       - (Create/POST) Create a new comment for the selected job id
-        
         ```swift
         let date = Date()
         let df = DateFormatter() df.dateFormat = "MM/dd/yyyy HH:mm:ss" 
