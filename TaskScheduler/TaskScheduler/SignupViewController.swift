@@ -1,14 +1,14 @@
 //
-//  LoginViewController.swift
+//  SignupController.swift
 //  TaskScheduler
 //
-//  Created by Enrique Delgado on 10/20/22.
+//  Created by Enrique Delgado on 11/9/22.
 //
 
 import UIKit
 import Parse
 
-class LoginViewController: UIViewController {
+class SignupViewController: UIViewController {
 
     @IBOutlet weak var usernameField: UITextField!
     
@@ -20,24 +20,25 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
-    @IBAction func onSignIn(_ sender: Any) {
-        let username = usernameField.text!
-        let password = passwordField.text!
+    @IBAction func onSignUp(_ sender: Any) {
+        let user = PFUser()
+        user.username = usernameField.text
+        user.password = passwordField.text
         
-        PFUser.logInWithUsername(inBackground: username, password: password)
-        { (user, error) in
-            if user != nil {
-                self.performSegue(withIdentifier: "loginSegue", sender: nil)
+        // TODO: connect with the picker
+        // and use that value here
+        user["manager"] = true
+        
+        user.signUpInBackground { (success, error) in
+            if success {
+                self.performSegue(withIdentifier: "jobListSegue", sender: nil)
+                
             } else {
+                // TODO: show an actual message in the view
                 print("Error: \(error?.localizedDescription)")
             }
+            
         }
-    }
-    
-    
-    @IBAction func onSignUp(_ sender: Any) {
-        
     }
     
     /*
