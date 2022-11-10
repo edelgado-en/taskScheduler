@@ -193,7 +193,7 @@
         <!--Navigation Controller-->
         <scene sceneID="QmF-gD-o6X">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dGm-R0-2yp" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="JobListNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="dGm-R0-2yp" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pka-9h-eIX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -228,7 +228,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="aQ2-fq-vZm"/>
+        <segue reference="b8d-a9-ywh"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
