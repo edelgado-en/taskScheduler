@@ -8,12 +8,75 @@
 import UIKit
 import Parse
 
-class TasksViewController: UIViewController {
+class TasksViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    var jobs = [PFObject]() //an array to hold jobs
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //return a number of rows. Also can be used as an iterator I guess
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //getting each individual cell
+        let job = jobs[indexPath.row] //section or something else?
+        
+        
+        
+        //for each row, give me a particular cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "JobTableViewCell") as! JobTableViewCell
+        
+        //now we can set information in each cell
+        cell.JobNameLabel.text = job["name"] as! String
+        cell.AssignedNameLabel.text = job["assigned_to"] as! String
+        cell.DateLabel.text = job["due_date"] as! String
+        
+        //add some logic for the status button image here
+        //if is complete = 1 green
+        //if not, yellow?
+        let status = job["status"] as! String
+        if status == "not_started" {
+            //not started. make color red
+            cell.StatusImage.image = UIImage(named: "not_started_status_image")
+        } else if status == "in_progress" {
+            //in progress. make color yellow
+            cell.StatusImage.image = UIImage(named: "in_progress_status_image")
+        } else if status == "completed" {
+            //completed. make color green
+            cell.StatusImage.image = UIImage(named: "completed_status_image")
+        }
+        
+        
+        
+        return cell
+    }
+    
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        //query data from the database
+        let query = PFQuery(className:"Job")
+        query.order(byDescending: "createdAt")
+        query.findObjectsInBackground { jobs, error in
+           if jobs != nil {
+               self.jobs = jobs!
+               self.tableView.reloadData()
+           }
+        }
     }
     
 
