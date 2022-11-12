@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Parse.initialize(with: parseConfig)
         
+        //this should be in SceneDelegate?
         if PFUser.current() != nil {
             let main = UIStoryboard(name: "Main", bundle: nil)
             let jobListNavigationController = main.instantiateViewController(withIdentifier: "JobListNavigationController")

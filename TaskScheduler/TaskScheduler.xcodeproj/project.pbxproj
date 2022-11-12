@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20C8D93C291EBD6B00AAEBF4 /* JobTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C8D93B291EBD6B00AAEBF4 /* JobTableViewCell.swift */; };
 		212535422901911300F1B145 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212535412901911300F1B145 /* AppDelegate.swift */; };
 		212535442901911300F1B145 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212535432901911300F1B145 /* SceneDelegate.swift */; };
 		212535492901911300F1B145 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 212535472901911300F1B145 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		175B963D73FB4242993CCD29 /* Pods-TaskScheduler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskScheduler.debug.xcconfig"; path = "Target Support Files/Pods-TaskScheduler/Pods-TaskScheduler.debug.xcconfig"; sourceTree = "<group>"; };
+		20C8D93B291EBD6B00AAEBF4 /* JobTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTableViewCell.swift; sourceTree = "<group>"; };
 		2125353E2901911300F1B145 /* TaskScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		212535412901911300F1B145 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		212535432901911300F1B145 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				21D791EC2901961F00F94F10 /* TasksViewController.swift */,
 				2161DE1F291C4D09006CC963 /* SignupViewController.swift */,
 				2161DE23291D251F006CC963 /* NewJobViewController.swift */,
+				20C8D93B291EBD6B00AAEBF4 /* JobTableViewCell.swift */,
 			);
 			path = TaskScheduler;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				21D791EB290195FE00F94F10 /* LoginViewController.swift in Sources */,
 				21D791ED2901961F00F94F10 /* TasksViewController.swift in Sources */,
 				212535422901911300F1B145 /* AppDelegate.swift in Sources */,
+				20C8D93C291EBD6B00AAEBF4 /* JobTableViewCell.swift in Sources */,
 				2161DE20291C4D09006CC963 /* SignupViewController.swift in Sources */,
 				212535442901911300F1B145 /* SceneDelegate.swift in Sources */,
 				2161DE24291D251F006CC963 /* NewJobViewController.swift in Sources */,
