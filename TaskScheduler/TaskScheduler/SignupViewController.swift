@@ -51,11 +51,14 @@ class SignupViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         user.username = usernameField.text
         user.password = passwordField.text
         
-        // TODO: connect with the picker
-        // and use that value here
-        user["manager"] = true
+        let selectedRoleIndex = picker.selectedRow(inComponent: 0)
         
-        user.signUpInBackground { (success, error) in
+        let isManager = selectedRoleIndex == 0 ? true : false
+
+        user["manager"] = isManager
+        
+        
+       user.signUpInBackground { (success, error) in
             if success {
                 self.performSegue(withIdentifier: "jobListSegue", sender: nil)
                 
