@@ -256,6 +256,7 @@
                                             <outlet property="DateLabel" destination="qtB-gO-CAP" id="IYf-h4-Dn3"/>
                                             <outlet property="DueDateLabel" destination="5es-3V-kUJ" id="ejl-Pe-Tfe"/>
                                             <outlet property="JobNameLabel" destination="IdH-e1-D2v" id="bOh-00-D98"/>
+                                            <segue destination="9td-Wv-4Tw" kind="show" id="cgD-gR-DfS"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -283,6 +284,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FVc-u0-kr9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1134.7826086956522" y="116.51785714285714"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="k5Q-HG-8Ep">
+            <objects>
+                <viewController id="9td-Wv-4Tw" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lc0-ff-eL8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="4hK-XZ-6gb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="JtF-oD-h0R"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v6H-pu-Zfv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1135" y="960"/>
         </scene>
         <!--New Job View Controller-->
         <scene sceneID="PMR-N0-3ob">

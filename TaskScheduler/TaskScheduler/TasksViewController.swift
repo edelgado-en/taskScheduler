@@ -100,6 +100,11 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       performSegue(withIdentifier: "jobDetails", sender: self)
+       
+   }
+    
     /*
     // MARK: - Navigation
 
