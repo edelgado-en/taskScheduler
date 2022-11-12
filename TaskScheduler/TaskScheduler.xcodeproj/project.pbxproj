@@ -20,6 +20,7 @@
 		21D791EB290195FE00F94F10 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D791EA290195FE00F94F10 /* LoginViewController.swift */; };
 		21D791ED2901961F00F94F10 /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D791EC2901961F00F94F10 /* TasksViewController.swift */; };
 		27DB7F8DAA190B8223533CF2 /* Pods_TaskSchedulerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F07CED7D0FE87C82321708E9 /* Pods_TaskSchedulerTests.framework */; };
+		292F048C291FFBDB00E40D70 /* JobDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292F048B291FFBDB00E40D70 /* JobDetailsViewController.swift */; };
 		5D9B16F88397986409A4DB94 /* Pods_TaskScheduler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4B6471BC8F2DB46B2FA73E /* Pods_TaskScheduler.framework */; };
 		709EF5CCF7CCD6D6F0F33768 /* Pods_TaskScheduler_TaskSchedulerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434E4156C0FF485840B61160 /* Pods_TaskScheduler_TaskSchedulerUITests.framework */; };
 /* End PBXBuildFile section */
@@ -59,6 +60,7 @@
 		2161DE23291D251F006CC963 /* NewJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewJobViewController.swift; sourceTree = "<group>"; };
 		21D791EA290195FE00F94F10 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		21D791EC2901961F00F94F10 /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
+		292F048B291FFBDB00E40D70 /* JobDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobDetailsViewController.swift; sourceTree = "<group>"; };
 		3EEF73F0875C1A094B433508 /* Pods-TaskScheduler-TaskSchedulerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskScheduler-TaskSchedulerUITests.debug.xcconfig"; path = "Target Support Files/Pods-TaskScheduler-TaskSchedulerUITests/Pods-TaskScheduler-TaskSchedulerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		434E4156C0FF485840B61160 /* Pods_TaskScheduler_TaskSchedulerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaskScheduler_TaskSchedulerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A92914CF6FED5086F199917 /* Pods-TaskScheduler-TaskSchedulerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskScheduler-TaskSchedulerUITests.release.xcconfig"; path = "Target Support Files/Pods-TaskScheduler-TaskSchedulerUITests/Pods-TaskScheduler-TaskSchedulerUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				21D791EC2901961F00F94F10 /* TasksViewController.swift */,
 				2161DE1F291C4D09006CC963 /* SignupViewController.swift */,
 				2161DE23291D251F006CC963 /* NewJobViewController.swift */,
+				292F048B291FFBDB00E40D70 /* JobDetailsViewController.swift */,
 			);
 			path = TaskScheduler;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				21D791EB290195FE00F94F10 /* LoginViewController.swift in Sources */,
 				21D791ED2901961F00F94F10 /* TasksViewController.swift in Sources */,
 				212535422901911300F1B145 /* AppDelegate.swift in Sources */,
+				292F048C291FFBDB00E40D70 /* JobDetailsViewController.swift in Sources */,
 				2161DE20291C4D09006CC963 /* SignupViewController.swift in Sources */,
 				212535442901911300F1B145 /* SceneDelegate.swift in Sources */,
 				2161DE24291D251F006CC963 /* NewJobViewController.swift in Sources */,
