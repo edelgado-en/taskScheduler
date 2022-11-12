@@ -259,20 +259,8 @@
                     <view key="view" contentMode="scaleToFill" id="to5-ih-bvh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="o5G-qp-on7">
-                                <rect key="frame" x="0.0" y="56" width="414" height="786"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="sH8-r3-wyF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="o5G-qp-on7" firstAttribute="leading" secondItem="sH8-r3-wyF" secondAttribute="leading" id="49n-gx-YHm"/>
-                            <constraint firstItem="o5G-qp-on7" firstAttribute="top" secondItem="sH8-r3-wyF" secondAttribute="top" id="USH-6r-5uJ"/>
-                            <constraint firstItem="sH8-r3-wyF" firstAttribute="bottom" secondItem="o5G-qp-on7" secondAttribute="bottom" id="fDx-fy-Sfv"/>
-                            <constraint firstItem="sH8-r3-wyF" firstAttribute="trailing" secondItem="o5G-qp-on7" secondAttribute="trailing" id="uju-jJ-Nth"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pEM-Zg-wgQ">
                         <barButtonItem key="leftBarButtonItem" title="logout" id="dQv-0a-SzA">
