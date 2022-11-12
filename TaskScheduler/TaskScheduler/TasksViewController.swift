@@ -23,39 +23,38 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        //query data from the database
-        //issue is in here.. list is still empty at the end of query
         let query = PFQuery(className:"Job")
-        query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in if objects != nil {
-            print("OBJECTS != NIL")
-            self.jobs = objects!
-            print(self.jobs.count)
-            self.tableView.reloadData()
-            print(self.jobs.count)
+        query.includeKey("assigned_to")
+        
+        query.findObjectsInBackground { (jobs, error) in
+            if jobs != nil {
+                self.jobs = jobs!
+                self.tableView.reloadData()
             }
         }
     }
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return a number of rows. Also can be used as an iterator I guess
-        return 1
+        return jobs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //getting each individual cell
-        //for each row, give me a particular cell
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "JobTableViewCell") as! JobTableViewCell
         
-        //READING FROM THE DATABASE WRONG - LOOK AT QUERY
-        //jobs.count is 0 right now
-        let job = jobs[indexPath.row] //section or something else?
+        let job = jobs[indexPath.row]
 
+        //let assignedTo = job["assigned_to"] as! PFUser
+        let jobName = job["name"] as! String
+        print(jobName)
+        
         //now we can set information in each cell
-        cell.JobNameLabel.text = job["name"] as! String
-        cell.AssignedNameLabel.text = job["assigned_to"] as! String
-        cell.DateLabel.text = job["due_date"] as! String
+        cell.JobNameLabel.text = jobName
+       // cell.AssignedNameLabel.text = assignedTo.username
+        //cell.DateLabel.text = job["due_date"] as! String
 
+        
         //add some logic for the status button image here
         //if is complete = 1 green
         //if not, yellow?
