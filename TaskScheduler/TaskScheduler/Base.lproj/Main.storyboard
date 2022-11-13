@@ -278,11 +278,160 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="nmb-kQ-QQJ" id="y0c-4z-Vd1"/>
+                        <segue destination="yco-2x-FeN" kind="show" identifier="jobDetails" id="gGa-tQ-DRQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FVc-u0-kr9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1134.7826086956522" y="116.51785714285714"/>
+            <point key="canvasLocation" x="1135" y="117"/>
+        </scene>
+        <!--TabBarController-->
+        <scene sceneID="2oc-AU-iQE">
+            <objects>
+                <tabBarController title="TabBarController" id="yco-2x-FeN" customClass="TabBarController" customModule="TaskScheduler" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="cpz-gU-dC6"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="stg-sx-uL0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="DIr-BP-aUN" kind="relationship" relationship="viewControllers" id="47F-Km-1od"/>
+                        <segue destination="D6n-IG-uZS" kind="relationship" relationship="viewControllers" id="8Ct-g1-8eS"/>
+                        <segue destination="Mqz-Za-fFP" kind="relationship" relationship="viewControllers" id="EAQ-bi-hh0"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tdc-L5-wBG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-578" y="952"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="71p-U1-dw5">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zjL-V0-WA4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController id="D6n-IG-uZS" customClass="JobDetailsNavigationController" customModule="TaskScheduler" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="wiE-U8-fKk"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wep-Ps-BQw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="oaN-4w-blJ" kind="relationship" relationship="rootViewController" id="Ilm-PD-b0A"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="-903" y="1695"/>
+        </scene>
+        <!--JobDetailsViewController-->
+        <scene sceneID="qwE-Kv-Wmf">
+            <objects>
+                <viewController storyboardIdentifier="JobDetailsViewController" title="JobDetailsViewController" id="oaN-4w-blJ" customClass="JobDetailsViewController" customModule="TaskScheduler" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vZp-SO-7g1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Job Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nCn-KO-TFf">
+                                <rect key="frame" x="34" y="165" width="78" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Assigned To:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upv-IQ-OWH">
+                                <rect key="frame" x="34" y="191" width="98" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Assigned by:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUy-t7-EbP">
+                                <rect key="frame" x="34" y="220" width="98" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Employee Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FNI-ff-O6i">
+                                <rect key="frame" x="140" y="191" width="124" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Manager Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="35a-98-Xlf">
+                                <rect key="frame" x="140" y="220" width="117" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Job Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wUs-WH-ah1">
+                                <rect key="frame" x="34" y="262" width="120" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tasks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tx7-Am-8GS">
+                                <rect key="frame" x="36" y="327" width="98" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="task #1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csV-eO-LVl">
+                                <rect key="frame" x="36" y="353" width="98" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7gw-o6-BLJ">
+                                <rect key="frame" x="279" y="169" width="115" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMd-9E-mYI">
+                                <rect key="frame" x="120" y="243" width="34" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Due Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g3G-qs-9CI">
+                                <rect key="frame" x="36" y="243" width="76" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="description..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y3p-j2-x4P">
+                                <rect key="frame" x="33" y="283" width="336" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ZMT-V3-9yp"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="eJ8-zv-f8u"/>
+                    <connections>
+                        <outlet property="dueDateLabel" destination="qMd-9E-mYI" id="BKb-dg-F9a"/>
+                        <outlet property="employeeNameLabel" destination="FNI-ff-O6i" id="irS-zb-rPe"/>
+                        <outlet property="jobDescriptionLabel" destination="y3p-j2-x4P" id="VuN-yz-hzk"/>
+                        <outlet property="jobName" destination="nCn-KO-TFf" id="WLw-14-jEo"/>
+                        <outlet property="managerNameLabel" destination="35a-98-Xlf" id="DB7-rr-KDa"/>
+                        <outlet property="statusLabel" destination="7gw-o6-BLJ" id="tHl-tt-sBd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RRw-wy-6OV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-904.34782608695662" y="2483.7053571428569"/>
         </scene>
         <!--New Job View Controller-->
         <scene sceneID="PMR-N0-3ob">
@@ -302,6 +451,7 @@
         <!--Navigation Controller-->
         <scene sceneID="QmF-gD-o6X">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YTs-Mw-NWx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="JobListNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="dGm-R0-2yp" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pka-9h-eIX">
@@ -313,7 +463,6 @@
                         <segue destination="xIy-3t-syU" kind="relationship" relationship="rootViewController" id="b8d-a9-ywh"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YTs-Mw-NWx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="241" y="117"/>
         </scene>
@@ -335,6 +484,72 @@
             </objects>
             <point key="canvasLocation" x="132" y="-648"/>
         </scene>
+        <!--Comments-->
+        <scene sceneID="6Ml-e7-6kl">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G4S-mj-6r6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController id="Mqz-Za-fFP" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Comments" id="0B0-aa-S5u"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oM3-L0-HQb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="E5p-Qm-0PF" kind="relationship" relationship="rootViewController" id="vDZ-HU-QOG"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="-106" y="1695"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="5WW-uO-XwU">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DVK-Ws-LUZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController id="DIr-BP-aUN" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="ysG-Sf-Z5O"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NUC-0b-E5b">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="qYd-TT-Enb" kind="relationship" relationship="rootViewController" id="XRK-9h-WHz"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="-1659" y="1695"/>
+        </scene>
+        <!--JobActivityViewController-->
+        <scene sceneID="QTb-69-zsq">
+            <objects>
+                <viewController title="JobActivityViewController" id="qYd-TT-Enb" customClass="JobActivityViewController" customModule="TaskScheduler" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NIt-5d-kMj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="1QH-Mv-7cc"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="zpH-xI-RDD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ORS-gt-R62" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1659" y="2484"/>
+        </scene>
+        <!--CommentsViewController-->
+        <scene sceneID="jj0-YR-Fhn">
+            <objects>
+                <viewController title="CommentsViewController" id="E5p-Qm-0PF" customClass="CommentsViewController" customModule="TaskScheduler" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7o6-80-CAy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="wmh-na-ezP"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="WzT-rR-mvN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X5w-UA-xOK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-107" y="2484"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="b8d-a9-ywh"/>
@@ -345,6 +560,9 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
