@@ -11,7 +11,8 @@ import Parse
 class TasksViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var jobs = [PFObject]() //an array to hold jobs
-    
+    var rowNum:Int? //an array to hold jobs
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,7 +21,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.dataSource = self
         
     }
-    
+     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -49,8 +50,6 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         let job = jobs[indexPath.row]
 
         let jobName = job["name"] as! String
-        print(job)
-        
         let assignedTo = job["assigned_to"] as! PFUser
         let assignedUsername = assignedTo.objectId as! String
         
@@ -87,6 +86,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     
+    
     @IBOutlet weak var tableView: UITableView!
     
     @IBAction func onLogout(_ sender: Any) {
@@ -100,14 +100,31 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     }
     
-    /*
+    
+    //Performs segue when a job is selected
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        rowNum = indexPath.row
+        performSegue(withIdentifier: "jobDetails", sender: self)
+   }
+    
+    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    //Passes data from task view controller to tab bar controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+
+        if(segue.identifier == "jobDetails"){
+            let job = jobs[rowNum!]
+            let vc = segue.destination as! TabBarController
+            vc.name = job["name"] as? String
+            vc.assignedTo = job["assigned_to"] as? String
+            vc.assignedBy = job["assigned_by"] as? String
+            vc.desc = job["description"] as? String
+            vc.dueDate = job["due_date"] as? String
+            vc.status = job["status"] as? String
+            vc.isCompleted = job["is_completed"] as? Bool
+        }
+
     }
-    */
+    
 
 }
