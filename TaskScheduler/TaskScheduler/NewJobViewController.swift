@@ -69,26 +69,18 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         query?.findObjectsInBackground(block: { users, error in
             if users != nil{
                 self.users = users!
+                //print(self.users[0].objectId)
                 for user in self.users {
+                    print(user.objectId)
                     self.pickerData.append(user["username"] as! String)
-                }
-                print("Printing contents of pickerData INSIDE of query:")
-                for item in self.pickerData {
-                    print(item)
                 }
             }
         })
-
-        print("printing content of pickerData outside of query:")
-        for item in self.pickerData {
-            print(item)
-        }
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        self.AssignToPicker.reloadAllComponents()
     }
 
     
@@ -103,6 +95,7 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     @IBAction func NavBackButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
     //This is where we save information and store it into parse
@@ -113,8 +106,10 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         job["name"] = NameInput.text
         job["description"] = DescriptionInput.text
         job["due_date"] = DueDatePicker.date
-        //how to grab this info?
-        //job["assigned_to"] = AssignToPicker.text
+        //print(AssignToPicker.selectedRow(inComponent:0))
+        let userIndex = AssignToPicker.selectedRow(inComponent:0)
+        
+        job["assigned_to"] = self.users[userIndex]
         job["created_by"] = PFUser.current()!
         job["status"] = "not_started" //should change to int value
         job["is_complete"] = false
