@@ -19,6 +19,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
+
         
     }
      
@@ -26,7 +27,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.viewDidAppear(animated)
         
         let query = PFQuery(className:"Job")
-        
+        query.includeKey("assigned_to")
         query.findObjectsInBackground { (jobs, error) in
             if jobs != nil {
                 self.jobs = jobs!
@@ -51,14 +52,12 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
 
         let jobName = job["name"] as! String
         let assignedTo = job["assigned_to"] as! PFUser
-        let assignedUsername = assignedTo.objectId as! String
+        let assignedUsername = assignedTo["username"] as! String
         
-        // TODO: this formatting is not working. Figure out how to format the date and bind it to DateLable.text
         var dueDate = job["due_date"] as! Date
         let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/YYYY"
 
-        
-        print(dateFormatter.string(from: dueDate))
         
         //now we can set information in each cell
         cell.JobNameLabel.text = jobName
@@ -70,17 +69,17 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         //if is complete = 1 green
         //if not, yellow?
         
-        //let status = job["status"] as! String
-        //if status == "not_started" {
+        let status = job["status"] as! String
+        if status == "not_started" {
             //not started. make color red
-          //  cell.StatusImage.image = UIImage(named: "not_started_status_image")
-        //} else if status == "in_progress" {
+            cell.StatusImage.image = UIImage(named: "not_started_status_image")
+        } else if status == "in_progress" {
             //in progress. make color yellow
-          //  cell.StatusImage.image = UIImage(named: "in_progress_status_image")
-        //} else if status == "completed" {
+            cell.StatusImage.image = UIImage(named: "in_progress_status_image")
+        } else if status == "completed" {
             //completed. make color green
-          //  cell.StatusImage.image = UIImage(named: "completed_status_image")
-        //}
+            cell.StatusImage.image = UIImage(named: "completed_status_image")
+        }
 
         return cell
     }
