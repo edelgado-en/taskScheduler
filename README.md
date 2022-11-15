@@ -27,15 +27,15 @@ The job scheduler app is designed to track, organize, and manage the different j
 
 **Required Must-have Stories**
 
-[x] User registers as a manager
+- [x] User registers as a manager
 
-[x] User registers as an employee
+- [x] User registers as an employee
 
-[x] User manager logs in and sees the list of jobs.
+- [x] User manager logs in and sees the list of jobs.
 
-[x] User manager clicks on the create job button and creates a job from the create job view. Manager must be able to select a job name, add tasks, and add an assignee. Adding an assignee at this point is optional. The status of the job will be assigned automatically when selecting an assignee. The possible status of a job are: “created”, “assigned”, “in-progress”, and “completed”. 
+- [x] User manager clicks on the create job button and creates a job from the create job view. Manager must be able to select a job name, add tasks, and add an assignee. Adding an assignee at this point is optional. The status of the job will be assigned automatically when selecting an assignee. The possible status of a job are: “created”, “assigned”, “in-progress”, and “completed”. 
 
-[x] User manager clicks on a job from the job listing and gets redirected to the job details view. User is able to see the detailed information about a job
+- [x] User manager clicks on a job from the job listing and gets redirected to the job details view. User is able to see the detailed information about a job
 
 * User manager clicks on a job from the job listing and gets redirected to the job details view. Manager is able to re-assign the job to a different employee.
 
@@ -435,15 +435,15 @@ Employee
 
 ### Completed user stories
 
-[x] User registers as a manager
+- [x] User registers as a manager
 
-[x] User registers as an employee
+- [x] User registers as an employee
 
-[x] User manager logs in and sees the list of jobs.
+- [x] User manager logs in and sees the list of jobs.
 
-[x] User manager clicks on the create job button and creates a job from the create job view. Manager must be able to select a job name, add tasks, and add an assignee. Adding an assignee at this point is optional. The status of the job will be assigned automatically when selecting an assignee. The possible status of a job are: “created”, “assigned”, “in-progress”, and “completed”. 
+- [x] User manager clicks on the create job button and creates a job from the create job view. Manager must be able to select a job name, add tasks, and add an assignee. Adding an assignee at this point is optional. The status of the job will be assigned automatically when selecting an assignee. The possible status of a job are: “created”, “assigned”, “in-progress”, and “completed”. 
 
-[x] User manager clicks on a job from the job listing and gets redirected to the job details view. User is able to see the detailed information about a job
+- [x] User manager clicks on a job from the job listing and gets redirected to the job details view. User is able to see the detailed information about a job
 
 
 
