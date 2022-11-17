@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import Parse
 
 class TabBarController: UITabBarController {
 
     var name:String?
-    var assignedTo:String?
-    var assignedBy:String?
-    var dueDate:String?
+    var assignedTo:PFUser? //was String?
+    var createdBy:PFUser? //was String?
+    var dueDate:Date? //was String?
     var isCompleted:Bool?
     var status:String?
     var desc:String?
@@ -30,7 +31,7 @@ class TabBarController: UITabBarController {
                 if let vc = nc.viewControllers.first as? JobDetailsViewController {
                     vc.name = name
                     vc.assignedTo = assignedTo
-                    vc.assignedBy = assignedBy
+                    vc.createdBy = createdBy
                     vc.desc = desc
                     vc.dueDate = dueDate
                     vc.status = status
