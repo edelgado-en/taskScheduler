@@ -27,7 +27,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.viewDidAppear(animated)
         
         let query = PFQuery(className:"Job")
-        query.includeKey("assigned_to")
+        query.includeKeys(["assigned_to", "created_by"])
         query.findObjectsInBackground { (jobs, error) in
             if jobs != nil {
                 self.jobs = jobs!
@@ -61,6 +61,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         //now we can set information in each cell
         cell.JobNameLabel.text = jobName
+        cell.JobNameLabel.sizeToFit()
         cell.AssignedNameLabel.text = assignedUsername
         cell.DateLabel.text = dateFormatter.string(from: dueDate)
 
@@ -115,10 +116,10 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             let job = jobs[rowNum!]
             let vc = segue.destination as! TabBarController
             vc.name = job["name"] as? String
-            vc.assignedTo = job["assigned_to"] as? String
-            vc.assignedBy = job["assigned_by"] as? String
+            vc.assignedTo = job["assigned_to"] as? PFUser //was String
+            vc.createdBy = job["created_by"] as? PFUser //was String
             vc.desc = job["description"] as? String
-            vc.dueDate = job["due_date"] as? String
+            vc.dueDate = job["due_date"] as? Date //was String
             vc.status = job["status"] as? String
             vc.isCompleted = job["is_completed"] as? Bool
         }
