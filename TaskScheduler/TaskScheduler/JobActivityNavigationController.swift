@@ -1,12 +1,13 @@
 //
-//  JobDetailsNavigationController.swift
+//  JobActivityNavigationController.swift
 //  TaskScheduler
 //
+//  Created by Enrique Delgado on 11/19/22.
 //
 
 import UIKit
 
-class JobDetailsNavigationController: UINavigationController {
+class JobActivityNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

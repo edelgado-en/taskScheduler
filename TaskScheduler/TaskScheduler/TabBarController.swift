@@ -36,6 +36,12 @@ class TabBarController: UITabBarController {
                     vc.dueDate = dueDate
                     vc.status = status
                     vc.isCompleted = isCompleted        
+                
+                }
+                
+            } else if let nc = viewController as? JobActivityNavigationController {
+                if let vc = nc.viewControllers.first as? JobActivityViewController {
+                    vc.name = name
                 }
             }
         }

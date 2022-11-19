@@ -16,6 +16,8 @@
 		212535592901911400F1B145 /* TaskSchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212535582901911400F1B145 /* TaskSchedulerTests.swift */; };
 		212535632901911400F1B145 /* TaskSchedulerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212535622901911400F1B145 /* TaskSchedulerUITests.swift */; };
 		212535652901911400F1B145 /* TaskSchedulerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212535642901911400F1B145 /* TaskSchedulerUITestsLaunchTests.swift */; };
+		212F81D92929191200B633F0 /* JobActivityNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212F81D82929191200B633F0 /* JobActivityNavigationController.swift */; };
+		212F81DB29291E5C00B633F0 /* JobActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212F81DA29291E5C00B633F0 /* JobActivityCell.swift */; };
 		2161DE20291C4D09006CC963 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2161DE1F291C4D09006CC963 /* SignupViewController.swift */; };
 		2161DE24291D251F006CC963 /* NewJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2161DE23291D251F006CC963 /* NewJobViewController.swift */; };
 		21D791EB290195FE00F94F10 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D791EA290195FE00F94F10 /* LoginViewController.swift */; };
@@ -62,6 +64,8 @@
 		2125355E2901911400F1B145 /* TaskSchedulerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaskSchedulerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		212535622901911400F1B145 /* TaskSchedulerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskSchedulerUITests.swift; sourceTree = "<group>"; };
 		212535642901911400F1B145 /* TaskSchedulerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskSchedulerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		212F81D82929191200B633F0 /* JobActivityNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobActivityNavigationController.swift; sourceTree = "<group>"; };
+		212F81DA29291E5C00B633F0 /* JobActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobActivityCell.swift; sourceTree = "<group>"; };
 		2161DE1F291C4D09006CC963 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		2161DE23291D251F006CC963 /* NewJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewJobViewController.swift; sourceTree = "<group>"; };
 		21D791EA290195FE00F94F10 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 				20C8D93B291EBD6B00AAEBF4 /* JobTableViewCell.swift */,
 				292F048F29201AC700E40D70 /* JobDetailsViewController.swift */,
 				292F0499292068CA00E40D70 /* JobDetailsNavigationController.swift */,
+				212F81D82929191200B633F0 /* JobActivityNavigationController.swift */,
+				212F81DA29291E5C00B633F0 /* JobActivityCell.swift */,
 			);
 			path = TaskScheduler;
 			sourceTree = "<group>";
@@ -438,6 +444,8 @@
 				292F049029201AC700E40D70 /* JobDetailsViewController.swift in Sources */,
 				21D791ED2901961F00F94F10 /* TasksViewController.swift in Sources */,
 				212535422901911300F1B145 /* AppDelegate.swift in Sources */,
+				212F81D92929191200B633F0 /* JobActivityNavigationController.swift in Sources */,
+				212F81DB29291E5C00B633F0 /* JobActivityCell.swift in Sources */,
 				20C8D93C291EBD6B00AAEBF4 /* JobTableViewCell.swift in Sources */,
 				2161DE20291C4D09006CC963 /* SignupViewController.swift in Sources */,
 				212535442901911300F1B145 /* SceneDelegate.swift in Sources */,
