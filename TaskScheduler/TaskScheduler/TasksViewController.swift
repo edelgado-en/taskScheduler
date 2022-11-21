@@ -49,7 +49,6 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "JobTableViewCell") as! JobTableViewCell
         let job = jobs[indexPath.row]
-
         let jobName = job["name"] as! String
         let assignedTo = job["assigned_to"] as! PFUser
         let assignedUsername = assignedTo["username"] as! String
@@ -122,6 +121,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             vc.dueDate = job["due_date"] as? Date //was String
             vc.status = job["status"] as? String
             vc.isCompleted = job["is_completed"] as? Bool
+            vc.jobId = job.objectId
+
         }
 
     }
