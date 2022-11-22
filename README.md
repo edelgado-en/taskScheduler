@@ -37,13 +37,13 @@ The job scheduler app is designed to track, organize, and manage the different j
 
 - [x] User manager clicks on a job from the job listing and gets redirected to the job details view. User is able to see the detailed information about a job
 
+- [x] User clicks on the comments icon from the job detail view, and gets redirected to the comments view. As a manager, I want to be able to add comments to a job after the time of creating it, so that I can keep up to date on the job and ask for progress reports. As an employee, they need to be able to reply to these comments and provide feedback to newly posted comments on the job.
+
+- [x] User clicks on the activity icon from the job detail view, and gets redirected to the activity view. User is able to see the list of status activities for that job.
+
 * User manager clicks on a job from the job listing and gets redirected to the job details view. Manager is able to re-assign the job to a different employee.
 
 * User manager clicks on a job from the job listing and gets redirected to the job details view. Manager is able to un-assign the job.
-
-* User clicks on the comments icon from the job detail view, and gets redirected to the comments view. As a manager, I want to be able to add comments to a job after the time of creating it, so that I can keep up to date on the job and ask for progress reports. As an employee, they need to be able to reply to these comments and provide feedback to newly posted comments on the job.
-
-* User clicks on the activity icon from the job detail view, and gets redirected to the activity view. User is able to see the list of status activities for that job.
 
 * User employee logs in and sees the list of jobs assigned to him/her. An employee can only see jobs assigned to him/her.
 
@@ -446,8 +446,25 @@ Employee
 - [x] User manager clicks on a job from the job listing and gets redirected to the job details view. User is able to see the detailed information about a job
 
 
-
 ### Gif Showing Progress
 <img src="http://g.recordit.co/XpiQQzzOh2.gif" width=600>
+
+
+## Unit 11 Milestone 
+
+### Completed user stories
+
+- [x] User manager clicks on a job from the job listing and gets redirected to the job details view. User is able to see the detailed information about a job with the correct information matching the selected job
+
+- [x] User clicks on the comments icon from the job detail view, and gets redirected to the comments view. As a manager, I want to be able to add comments to a job after the time of creating it, so that I can keep up to date on the job and ask for progress reports. As an employee, they need to be able to reply to these comments and provide feedback to newly posted comments on the job.
+
+- [x] User clicks on the activity icon from the job detail view, and gets redirected to the activity view. User is able to see the list of status activities for that job.
+
+
+### Gif Showing Progress
+<img src="http://g.recordit.co/ABmfSqOsew.gif" width=600>
+
+
+
 
 
