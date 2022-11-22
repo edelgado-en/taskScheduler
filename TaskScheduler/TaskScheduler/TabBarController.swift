@@ -17,6 +17,8 @@ class TabBarController: UITabBarController {
     var isCompleted:Bool?
     var status:String?
     var desc:String?
+    var jobId:String?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +44,12 @@ class TabBarController: UITabBarController {
             } else if let nc = viewController as? JobActivityNavigationController {
                 if let vc = nc.viewControllers.first as? JobActivityViewController {
                     vc.name = name
+                }
+            } else if let nc = viewController as? CommentNavigationController {
+                if let vc = nc.viewControllers.first as? CommentsViewController {
+                    vc.jobName = name
+                    vc.jobId = jobId
+
                 }
             }
         }

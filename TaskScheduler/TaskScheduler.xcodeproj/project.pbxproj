@@ -28,6 +28,8 @@
 		292F04942920453800E40D70 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292F04932920453800E40D70 /* CommentsViewController.swift */; };
 		292F049A292068CA00E40D70 /* JobDetailsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292F0499292068CA00E40D70 /* JobDetailsNavigationController.swift */; };
 		292F049C292069CE00E40D70 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292F049B292069CE00E40D70 /* TabBarController.swift */; };
+		29C2E953292C00BD002E5661 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C2E952292C00BD002E5661 /* CommentCell.swift */; };
+		29C2E955292C1202002E5661 /* CommentNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C2E954292C1202002E5661 /* CommentNavigationController.swift */; };
 		5D9B16F88397986409A4DB94 /* Pods_TaskScheduler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E4B6471BC8F2DB46B2FA73E /* Pods_TaskScheduler.framework */; };
 		709EF5CCF7CCD6D6F0F33768 /* Pods_TaskScheduler_TaskSchedulerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434E4156C0FF485840B61160 /* Pods_TaskScheduler_TaskSchedulerUITests.framework */; };
 /* End PBXBuildFile section */
@@ -75,6 +77,8 @@
 		292F04932920453800E40D70 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		292F0499292068CA00E40D70 /* JobDetailsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobDetailsNavigationController.swift; sourceTree = "<group>"; };
 		292F049B292069CE00E40D70 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		29C2E952292C00BD002E5661 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		29C2E954292C1202002E5661 /* CommentNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentNavigationController.swift; sourceTree = "<group>"; };
 		3EEF73F0875C1A094B433508 /* Pods-TaskScheduler-TaskSchedulerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskScheduler-TaskSchedulerUITests.debug.xcconfig"; path = "Target Support Files/Pods-TaskScheduler-TaskSchedulerUITests/Pods-TaskScheduler-TaskSchedulerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		434E4156C0FF485840B61160 /* Pods_TaskScheduler_TaskSchedulerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaskScheduler_TaskSchedulerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A92914CF6FED5086F199917 /* Pods-TaskScheduler-TaskSchedulerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskScheduler-TaskSchedulerUITests.release.xcconfig"; path = "Target Support Files/Pods-TaskScheduler-TaskSchedulerUITests/Pods-TaskScheduler-TaskSchedulerUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -162,10 +166,12 @@
 				2161DE1F291C4D09006CC963 /* SignupViewController.swift */,
 				2161DE23291D251F006CC963 /* NewJobViewController.swift */,
 				20C8D93B291EBD6B00AAEBF4 /* JobTableViewCell.swift */,
+				29C2E954292C1202002E5661 /* CommentNavigationController.swift */,
 				292F048F29201AC700E40D70 /* JobDetailsViewController.swift */,
 				292F0499292068CA00E40D70 /* JobDetailsNavigationController.swift */,
 				212F81D82929191200B633F0 /* JobActivityNavigationController.swift */,
 				212F81DA29291E5C00B633F0 /* JobActivityCell.swift */,
+				29C2E952292C00BD002E5661 /* CommentCell.swift */,
 			);
 			path = TaskScheduler;
 			sourceTree = "<group>";
@@ -444,9 +450,11 @@
 				292F049029201AC700E40D70 /* JobDetailsViewController.swift in Sources */,
 				21D791ED2901961F00F94F10 /* TasksViewController.swift in Sources */,
 				212535422901911300F1B145 /* AppDelegate.swift in Sources */,
+				29C2E953292C00BD002E5661 /* CommentCell.swift in Sources */,
 				212F81D92929191200B633F0 /* JobActivityNavigationController.swift in Sources */,
 				212F81DB29291E5C00B633F0 /* JobActivityCell.swift in Sources */,
 				20C8D93C291EBD6B00AAEBF4 /* JobTableViewCell.swift in Sources */,
+				29C2E955292C1202002E5661 /* CommentNavigationController.swift in Sources */,
 				2161DE20291C4D09006CC963 /* SignupViewController.swift in Sources */,
 				212535442901911300F1B145 /* SceneDelegate.swift in Sources */,
 				292F049A292068CA00E40D70 /* JobDetailsNavigationController.swift in Sources */,
