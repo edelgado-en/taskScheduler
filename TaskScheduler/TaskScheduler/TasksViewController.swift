@@ -28,6 +28,14 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         let query = PFQuery(className:"Job")
         query.includeKeys(["assigned_to", "created_by"])
+        
+        let currentUser = PFUser.current()
+        
+        // if the current user is not a manager, we only fetch jobs assigned to the current user
+        if (currentUser?["manager"] as! Int != 1) {
+            query.whereKey("assigned_to", equalTo: currentUser)
+        }
+        
         query.findObjectsInBackground { (jobs, error) in
             if jobs != nil {
                 self.jobs = jobs!
