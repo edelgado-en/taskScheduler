@@ -67,9 +67,11 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
                                 comment["name"] = a
                                 comment["comment"] = b
                                 comment.saveInBackground()
-                                self.table.reloadData()
                             }
                         }
+                    }
+                    DispatchQueue.main.async {
+                        self.table.reloadData()
                     }
                 }
             }
@@ -105,6 +107,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
         let cell = self.table.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! CommentCell
 
         if(a.count == 0){

@@ -38,6 +38,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         query.findObjectsInBackground { (jobs, error) in
             if jobs != nil {
+                //print(jobs)
                 self.jobs = jobs!
                 self.tableView.reloadData()
             }

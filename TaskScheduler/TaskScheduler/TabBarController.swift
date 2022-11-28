@@ -37,7 +37,8 @@ class TabBarController: UITabBarController {
                     vc.desc = desc
                     vc.dueDate = dueDate
                     vc.status = status
-                    vc.isCompleted = isCompleted        
+                    vc.isCompleted = isCompleted
+                    vc.jobId = jobId
                 
                 }
                 

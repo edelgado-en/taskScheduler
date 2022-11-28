@@ -10,7 +10,8 @@ import Parse
 import AlamofireImage
 
 class JobDetailsViewController: UIViewController {
-
+    public var completionHandler: ((Bool?) -> Void)?
+    
     @IBOutlet weak var jobName: UILabel!
     @IBOutlet weak var employeeNameLabel: UILabel!
     @IBOutlet weak var managerNameLabel: UILabel!
@@ -25,6 +26,19 @@ class JobDetailsViewController: UIViewController {
     
     @IBOutlet weak var DueDateLabel: UILabel!
     
+    @IBAction func editButton(_ sender: Any) {
+        
+    let vc = storyboard?.instantiateViewController(withIdentifier: "newJobScreen") as! NewJobViewController
+        vc.showEditButton = true
+        vc.jobName = name
+        vc.desc = desc
+        vc.dueDate = dueDate
+        vc.assignedTo = assignedTo
+        vc.jobId = jobId
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+    }
+    
     
     var name:String?
     var assignedTo:PFUser? //was String?
@@ -33,15 +47,15 @@ class JobDetailsViewController: UIViewController {
     var isCompleted:Bool?
     var status:String?
     var desc:String?
+    var jobId:String?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         
         //formatting date value
-        var dueDate = dueDate!
+        let dueDate = dueDate!
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/YYYY"
 
