@@ -65,6 +65,10 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 
         // Do any additional setup after loading the view.
         
+        //create a border for the description textView
+        DescriptionInput.layer.borderWidth = 1
+        DescriptionInput.layer.borderColor = UIColor.black.cgColor
+        
         let query = PFUser.query()
         query?.findObjectsInBackground(block: { users, error in
             if users != nil{
