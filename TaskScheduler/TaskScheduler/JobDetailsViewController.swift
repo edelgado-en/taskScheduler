@@ -111,11 +111,16 @@ class JobDetailsViewController: UIViewController {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "MM/dd/YYYY"
                 
+                self.JobDescriptionLabel.text = job?["description"] as? String
                 self.jobName.text = job?["name"] as? String
                 self.employeeNameLabel.text = employee?.username
                 self.managerNameLabel.text = manager?.username
                 self.DueDateLabel.text = dateFormatter.string(from: dueDate)
-
+                
+                self.name = job?["name"] as? String
+                self.desc = job?["description"] as? String
+                self.assignedTo = employee
+                self.dueDate = date
             }
         }
     }

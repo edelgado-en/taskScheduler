@@ -65,7 +65,10 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         dismiss(animated: true, completion: nil)
     }
     
+    @IBOutlet weak var showDismissButton: UIButton!
+
     @IBOutlet weak var editButton: UIButton!
+    
     @IBOutlet weak var JobTitle: UILabel!
     
     @IBOutlet weak var NameLabel: UILabel!
@@ -88,6 +91,9 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     @IBOutlet weak var saveButton: UIButton!
     
+    @IBAction func dismissButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.AssignToPicker.delegate = self
@@ -112,12 +118,15 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             DueDatePicker.date = dueDate!
         }
         
+
         if(showEditButton == nil){
             self.editButton.isHidden = true
+            self.showDismissButton.isHidden = true
             self.saveButton.isHidden = false
         }
         else{
             self.editButton.isHidden = false
+            self.showDismissButton.isHidden = false
             self.saveButton.isHidden = true
         }
     }
@@ -154,6 +163,8 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     //This is where we save information and store it into parse
     @IBAction func SaveButton(_ sender: Any) {
+        
+        
         let job = PFObject(className: "Job")
         
         //gather date
