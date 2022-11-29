@@ -126,7 +126,7 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                 print("Information not saved!")
             }
         }
-        //dismiss the screen
+        //dismiss the screen so that we return to main view
         dismiss(animated: true, completion: nil)
     }
     /*
