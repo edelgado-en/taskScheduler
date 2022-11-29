@@ -10,7 +10,8 @@ import Parse
 import AlamofireImage
 
 class JobDetailsViewController: UIViewController {
-
+    public var completionHandler: ((Bool?) -> Void)?
+    
     @IBOutlet weak var jobName: UILabel!
     @IBOutlet weak var employeeNameLabel: UILabel!
     @IBOutlet weak var managerNameLabel: UILabel!
@@ -25,6 +26,21 @@ class JobDetailsViewController: UIViewController {
     
     @IBOutlet weak var DueDateLabel: UILabel!
     
+    @IBOutlet weak var showButton: UIButton!
+    
+    @IBAction func editButton(_ sender: Any) {
+        
+    let vc = storyboard?.instantiateViewController(withIdentifier: "newJobScreen") as! NewJobViewController
+        vc.showEditButton = true
+        vc.jobName = name
+        vc.desc = desc
+        vc.dueDate = dueDate
+        vc.assignedTo = assignedTo
+        vc.jobId = jobId
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+    }
+    
     
     var name:String?
     var assignedTo:PFUser? //was String?
@@ -33,15 +49,15 @@ class JobDetailsViewController: UIViewController {
     var isCompleted:Bool?
     var status:String?
     var desc:String?
+    var jobId:String?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         
         //formatting date value
-        var dueDate = dueDate!
+        let dueDate = dueDate!
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/YYYY"
 
@@ -69,17 +85,39 @@ class JobDetailsViewController: UIViewController {
             //completed. make color green
             JobStatusImage.image = UIImage(named: "completed_status_image")
         }
-    }
-    
+        
+        //Shows or hides the edit button
+        let user = PFUser.current()
+        let isManager = user?["manager"] as? Bool
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if(isManager == true){
+            self.showButton.isHidden = false
+        }
+        else{
+            self.showButton.isHidden = true
+        }
     }
-    */
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let query = PFQuery(className:"Job")
+        query.includeKeys(["assigned_to", "created_by"])
+        query.getObjectInBackground(withId: jobId!) { (job, error) in
+            if error == nil {
+                let employee = job?["assigned_to"] as? PFUser
+                let manager = job?["created_by"] as? PFUser
+                let date = job?["due_date"] as? Date
+                let dueDate = date!
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "MM/dd/YYYY"
+                
+                self.jobName.text = job?["name"] as? String
+                self.employeeNameLabel.text = employee?.username
+                self.managerNameLabel.text = manager?.username
+                self.DueDateLabel.text = dateFormatter.string(from: dueDate)
+
+            }
+        }
+    }
 
 }
