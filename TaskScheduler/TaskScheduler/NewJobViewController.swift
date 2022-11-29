@@ -102,7 +102,8 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
         //create a border for the description textView
         DescriptionInput.layer.borderWidth = 1
-        DescriptionInput.layer.borderColor = UIColor.black.cgColor
+        DescriptionInput.layer.borderColor = UIColor.lightGray.cgColor
+        NameInput.layer.borderColor = UIColor.lightGray.cgColor
         
         
         let query = PFUser.query()
@@ -193,6 +194,8 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                 print("Information not saved!")
             }
         }
+        //dismiss the screen after creation
+        dismiss(animated: true, completion: nil)
     }
     /*
     // MARK: - Navigation
