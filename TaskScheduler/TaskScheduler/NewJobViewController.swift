@@ -99,6 +99,12 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         self.AssignToPicker.delegate = self
         self.AssignToPicker.dataSource = self
 
+        
+        //create a border for the description textView
+        DescriptionInput.layer.borderWidth = 1
+        DescriptionInput.layer.borderColor = UIColor.black.cgColor
+        
+        
         let query = PFUser.query()
 
         query?.findObjectsInBackground(block: { [self] users, error in
