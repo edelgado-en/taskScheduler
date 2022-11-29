@@ -103,6 +103,7 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         //create a border for the description textView
         DescriptionInput.layer.borderWidth = 1
         DescriptionInput.layer.borderColor = UIColor.lightGray.cgColor
+        NameInput.layer.borderWidth = 1
         NameInput.layer.borderColor = UIColor.lightGray.cgColor
         
         
