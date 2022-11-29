@@ -27,6 +27,7 @@ class JobDetailsViewController: UIViewController {
     @IBOutlet weak var DueDateLabel: UILabel!
     
     @IBOutlet weak var showButton: UIButton!
+    
     @IBAction func editButton(_ sender: Any) {
         
     let vc = storyboard?.instantiateViewController(withIdentifier: "newJobScreen") as! NewJobViewController

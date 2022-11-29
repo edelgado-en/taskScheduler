@@ -1,10 +1,3 @@
-//
-//  CommentsViewController.swift
-//  TaskScheduler
-//
-//  Created by Izayah Hewell  on 11/12/22.
-//
-
 import UIKit
 import Parse
 
@@ -16,18 +9,12 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
     var jobId:String?
     var jobName:String?
     var user = PFUser.current()
-    var a = [String]()
-    var b = [String]()
     var job: PFObject?
 
-    //var job = PFObject()
-
-
-
     @IBOutlet weak var AddCommentField: UITextField!
-    
+    @IBOutlet weak var table: UITableView!
+
     @IBAction func SendButton(_ sender: Any) {
-        
         
         //Post the comment
         let comment = PFObject(className: "Comment")
@@ -49,8 +36,6 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
 
     }
         
-    @IBOutlet weak var table: UITableView!
-    
     
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 

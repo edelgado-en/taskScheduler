@@ -18,8 +18,6 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     var jobId:String?
 
 
-
-    
     
     var users = [PFObject]() //array to hold users
     //var usernames = [String]()
@@ -64,13 +62,8 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                 job.saveInBackground()
             }
         }
-        self.view.layoutIfNeeded()
         dismiss(animated: true, completion: nil)
-
-        
-        
     }
-    
     
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var JobTitle: UILabel!
@@ -97,11 +90,9 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.AssignToPicker.delegate = self
         self.AssignToPicker.dataSource = self
 
-        // Do any additional setup after loading the view.
         let query = PFUser.query()
 
         query?.findObjectsInBackground(block: { [self] users, error in
@@ -115,14 +106,11 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             }
         })
         
-
         NameInput.text = jobName
         DescriptionInput.text = desc
         if(dueDate != nil){
             DueDatePicker.date = dueDate!
         }
-        
-     
         
         if(showEditButton == nil){
             self.editButton.isHidden = true
@@ -136,7 +124,6 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
         
         if (assignedTo != nil){
             let username = assignedTo!["username"] as! String
