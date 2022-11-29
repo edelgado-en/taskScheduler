@@ -10,6 +10,15 @@ import Parse
 
 class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    var showEditButton:Bool?
+    var jobName:String?
+    var desc:String?
+    var dueDate:Date?
+    var assignedTo:PFUser?
+    var jobId:String?
+
+
+    
     var users = [PFObject]() //array to hold users
     //var usernames = [String]()
     var pickerData: [String] = [String]()
@@ -36,6 +45,30 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
    }
 
     
+    @IBAction func saveChanges(_ sender: Any) {
+        
+        let query = PFQuery(className:"Job")
+        query.getObjectInBackground(withId: jobId!) { (job: PFObject?, error: Error?) in
+
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let job = job {
+                job["name"] = self.NameInput.text
+                job["description"] = self.DescriptionInput.text
+                job["due_date"] = self.DueDatePicker.date
+                let userIndex = self.AssignToPicker.selectedRow(inComponent:0)
+                job["assigned_to"] = self.users[userIndex]
+                //job["status"] = "not_started" //should change to int value
+                job.saveInBackground()
+            }
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBOutlet weak var showDismissButton: UIButton!
+
+    @IBOutlet weak var editButton: UIButton!
+    
     @IBOutlet weak var JobTitle: UILabel!
     
     @IBOutlet weak var NameLabel: UILabel!
@@ -56,35 +89,67 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     @IBOutlet weak var TaskLabel: UILabel!
     
+    @IBOutlet weak var saveButton: UIButton!
     
+    @IBAction func dismissButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.AssignToPicker.delegate = self
         self.AssignToPicker.dataSource = self
 
-        // Do any additional setup after loading the view.
         
         //create a border for the description textView
         DescriptionInput.layer.borderWidth = 1
         DescriptionInput.layer.borderColor = UIColor.black.cgColor
         
+        
         let query = PFUser.query()
-        query?.findObjectsInBackground(block: { users, error in
+
+        query?.findObjectsInBackground(block: { [self] users, error in
             if users != nil{
                 self.users = users!
                 //print(self.users[0].objectId)
                 for user in self.users {
-                    print(user.objectId)
+                    //print(user.objectId)
                     self.pickerData.append(user["username"] as! String)
                 }
             }
         })
+        
+        NameInput.text = jobName
+        DescriptionInput.text = desc
+        if(dueDate != nil){
+            DueDatePicker.date = dueDate!
+        }
+        
+
+        if(showEditButton == nil){
+            self.editButton.isHidden = true
+            self.showDismissButton.isHidden = true
+            self.saveButton.isHidden = false
+        }
+        else{
+            self.editButton.isHidden = false
+            self.showDismissButton.isHidden = false
+            self.saveButton.isHidden = true
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.AssignToPicker.reloadAllComponents()
+        
+        if (assignedTo != nil){
+            let username = assignedTo!["username"] as! String
+            let index = pickerData.firstIndex(of: username)!
+            self.AssignToPicker.reloadAllComponents()
+            AssignToPicker.selectRow(index, inComponent:0, animated: true)
+        }
+        else{
+            self.AssignToPicker.reloadAllComponents()
+        }
+
     }
 
     
@@ -104,6 +169,8 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     //This is where we save information and store it into parse
     @IBAction func SaveButton(_ sender: Any) {
+        
+        
         let job = PFObject(className: "Job")
         
         //gather date
