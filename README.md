@@ -41,11 +41,9 @@ The job scheduler app is designed to track, organize, and manage the different j
 
 - [x] User clicks on the activity icon from the job detail view, and gets redirected to the activity view. User is able to see the list of status activities for that job.
 
-* User manager clicks on a job from the job listing and gets redirected to the job details view. Manager is able to re-assign the job to a different employee.
+- [x] User employee logs in and sees the list of jobs assigned to him/her. An employee can only see jobs assigned to him/her.
 
-* User manager clicks on a job from the job listing and gets redirected to the job details view. Manager is able to un-assign the job.
-
-* User employee logs in and sees the list of jobs assigned to him/her. An employee can only see jobs assigned to him/her.
+- [x] User can edit a job
 
 * User employee clicks on a job from the job listing and gets redirected to the job details view. User can complete or set an in-progress individual tasks and or complete the whole job by clicking the corresponding buttons. Once a job is completed, it won’t be visible in the job listing for that user. A task should have an identity such as having an id, name, and status so that both employees and managers can view the state of a task and know which job it is correlated with. As an employee, I want to be able to change the status of the tasks in each job so that I can report the progress of the overall job.
 
@@ -463,6 +461,21 @@ Employee
 
 ### Gif Showing Progress
 <img src="http://g.recordit.co/ABmfSqOsew.gif" width=600>
+
+
+## Unit 12 Milestone 
+
+### Completed user stories
+
+- [x] User employee logs in and sees the list of jobs assigned to him/her. An employee can only see jobs assigned to him/her.
+
+- [x] User can edit a job
+
+- [x] In-progress general app beautification. Correcting margins, paddings, colors, etc.
+
+
+### Gif Showing Progress
+<img src="http://g.recordit.co/uoeQRwyor2.gif" width=600>
 
 
 
