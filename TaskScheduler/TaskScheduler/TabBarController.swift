@@ -40,11 +40,13 @@ class TabBarController: UITabBarController {
                     vc.isCompleted = isCompleted        
                     vc.jobId = jobId
 
+
                 }
                 
             } else if let nc = viewController as? JobActivityNavigationController {
                 if let vc = nc.viewControllers.first as? JobActivityViewController {
                     vc.name = name
+                    vc.jobId = jobId
                 }
             } else if let nc = viewController as? CommentNavigationController {
                 if let vc = nc.viewControllers.first as? CommentsViewController {

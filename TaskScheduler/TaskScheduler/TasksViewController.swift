@@ -27,7 +27,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.viewDidAppear(animated)
         
         let query = PFQuery(className:"Job")
-        query.includeKeys(["assigned_to", "created_by"])
+        query.includeKeys(["assigned_to", "created_by", "activity"])
         
         let currentUser = PFUser.current()
         
@@ -71,20 +71,30 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         cell.JobNameLabel.sizeToFit()
         cell.AssignedNameLabel.text = assignedUsername
         cell.DateLabel.text = dateFormatter.string(from: dueDate)
-
+        var status = ""
         
+        let x = (job["activity"] as? [PFObject]) ?? []
+        let i = x.count
+        if(i > 0){
+            let x = (job["activity"] as? [PFObject]) ?? []
+            let i = x.count
+            let y = x[i-1]
+            status = y["status"] as! String
+        }
+        else{
+            status = "Not started"
+        }
         //add some logic for the status button image here
         //if is complete = 1 green
         //if not, yellow?
-        
-        let status = job["status"] as! String
-        if status == "not_started" {
+        //let status = y["status"] as! String
+        if status == "Not started" {
             //not started. make color red
             cell.StatusImage.image = UIImage(named: "not_started_status_image")
-        } else if status == "in_progress" {
+        } else if status == "In progress" {
             //in progress. make color yellow
             cell.StatusImage.image = UIImage(named: "in_progress_status_image")
-        } else if status == "completed" {
+        } else if status == "Completed" {
             //completed. make color green
             cell.StatusImage.image = UIImage(named: "completed_status_image")
         }
@@ -121,6 +131,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
 
         if(segue.identifier == "jobDetails"){
             let job = jobs[rowNum!]
+            let x = (job["activity"] as? [PFObject]) ?? []
+            let i = x.count
             let vc = segue.destination as! TabBarController
             vc.name = job["name"] as? String
             vc.assignedTo = job["assigned_to"] as? PFUser //was String
@@ -130,6 +142,13 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             vc.status = job["status"] as? String
             vc.isCompleted = job["is_completed"] as? Bool
             vc.jobId = job.objectId
+            if i > 0{
+                let y = x[i - 1]
+                vc.status = y["status"] as? String
+            }
+            else{
+                vc.status = job["status"] as? String
+            }
 
         }
 

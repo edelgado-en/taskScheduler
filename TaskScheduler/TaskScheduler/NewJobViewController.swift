@@ -16,26 +16,34 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     var dueDate:Date?
     var assignedTo:PFUser?
     var jobId:String?
-
-
-    
+    var job: PFObject?
+    var status:String?
     var users = [PFObject]() //array to hold users
-    //var usernames = [String]()
     var pickerData: [String] = [String]()
-    //var pickerData: [Void] = [Void]()
-    
+    var statusPickerData = ["Not started", "In progress", "Completed"]
+
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        pickerData.count
+        if pickerView.tag == 0 {
+            return pickerData.count
+        }
+        else {
+            return statusPickerData.count
+        }
     }
     
     // The data to return for the row and component (column) that's being passed in
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         //print(users[row]["username"] as Any)
-        return pickerData[row]
+        if pickerView.tag == 0 {
+            return pickerData[row]
+        }
+        else {
+            return statusPickerData[row]
+        }
     }
     
     // Capture the picker view selection
@@ -44,10 +52,12 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
        // The parameter named row and component represents what was selected.
    }
 
-    
+    //Saves edits made to the job
     @IBAction func saveChanges(_ sender: Any) {
         
         let query = PFQuery(className:"Job")
+        query.includeKeys(["activity"])
+
         query.getObjectInBackground(withId: jobId!) { (job: PFObject?, error: Error?) in
 
             if let error = error {
@@ -58,12 +68,41 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                 job["due_date"] = self.DueDatePicker.date
                 let userIndex = self.AssignToPicker.selectedRow(inComponent:0)
                 job["assigned_to"] = self.users[userIndex]
-                //job["status"] = "not_started" //should change to int value
                 job.saveInBackground()
+                
+                let x = (job["activity"] as? [PFObject]) ?? []
+                var i = x.count
+                let y = x[i - 1]
+                i = self.statusPicker.selectedRow(inComponent:0)
+                let z = self.statusPickerData[i]
+                
+                if (y["status"] as? String != z) {
+                    let index = self.statusPicker.selectedRow(inComponent:0)
+                    let activity = PFObject(className: "Activity")
+                    activity["status"] = self.statusPickerData[index]
+                    activity["job"] = job
+                    activity["username"] = PFUser.current()!
+                    job.add(activity, forKey: "activity")
+
+                    job.saveInBackground{(success, error) in
+                        if success{
+                            print("Status changed")
+                        } else {
+                            print("Error changing status comment")
+                        }
+                    }
+                }
             }
         }
+        
         dismiss(animated: true, completion: nil)
     }
+    
+    
+    
+    @IBOutlet weak var statusLabel: UILabel!
+    
+    @IBOutlet weak var statusPicker: UIPickerView!
     
     @IBOutlet weak var showDismissButton: UIButton!
 
@@ -94,11 +133,13 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBAction func dismissButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.AssignToPicker.delegate = self
         self.AssignToPicker.dataSource = self
-
+        self.statusPicker.delegate = self
+        self.statusPicker.dataSource = self
         
         //create a border for the description textView
         DescriptionInput.layer.borderWidth = 1
@@ -122,16 +163,20 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         DescriptionInput.text = desc
         if(dueDate != nil){
             DueDatePicker.date = dueDate!
+            
         }
-        
 
         if(showEditButton == nil){
             self.editButton.isHidden = true
+            self.statusPicker.isHidden = true
+            self.statusLabel.isHidden = true
             self.showDismissButton.isHidden = true
             self.saveButton.isHidden = false
         }
         else{
             self.editButton.isHidden = false
+            self.statusPicker.isHidden = false
+            self.statusLabel.isHidden = false
             self.showDismissButton.isHidden = false
             self.saveButton.isHidden = true
         }
@@ -142,12 +187,27 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
         if (assignedTo != nil){
             let username = assignedTo!["username"] as! String
-            let index = pickerData.firstIndex(of: username)!
+            var index = pickerData.firstIndex(of: username)!
             self.AssignToPicker.reloadAllComponents()
             AssignToPicker.selectRow(index, inComponent:0, animated: true)
+            index = statusPickerData.firstIndex(of: status!)!
+            self.statusPicker.reloadAllComponents()
+            statusPicker.selectRow(index, inComponent:0, animated: true)
         }
         else{
             self.AssignToPicker.reloadAllComponents()
+            self.statusPicker.reloadAllComponents()
+
+        }
+        
+        if(showEditButton != nil){
+            let query = PFQuery(className:"Job")
+            query.includeKeys(["username", "activity", "activity.username"])
+            query.getObjectInBackground(withId: jobId!) { (job, error) in
+                if error == nil {
+                    self.job = job!
+                }
+            }
         }
 
     }
@@ -177,12 +237,11 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         job["name"] = NameInput.text
         job["description"] = DescriptionInput.text
         job["due_date"] = DueDatePicker.date
-        //print(AssignToPicker.selectedRow(inComponent:0))
         let userIndex = AssignToPicker.selectedRow(inComponent:0)
         
         job["assigned_to"] = self.users[userIndex]
         job["created_by"] = PFUser.current()!
-        job["status"] = "not_started" //should change to int value
+        job["status"] = "Not started" //should change to int value
         job["is_complete"] = false
         
         //save info into parse
@@ -193,6 +252,9 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                 print("Information not saved!")
             }
         }
+        
+        self.navigationController?.popToRootViewController(animated: true)
+        
     }
     /*
     // MARK: - Navigation

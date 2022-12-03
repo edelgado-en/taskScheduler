@@ -37,6 +37,7 @@ class JobDetailsViewController: UIViewController {
         vc.dueDate = dueDate
         vc.assignedTo = assignedTo
         vc.jobId = jobId
+        vc.status = status
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
@@ -50,7 +51,7 @@ class JobDetailsViewController: UIViewController {
     var status:String?
     var desc:String?
     var jobId:String?
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +60,7 @@ class JobDetailsViewController: UIViewController {
         //formatting date value
         let dueDate = dueDate!
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/YYYY"
+        dateFormatter.dateFormat = "EEEE, MMM d, yyyy h:mm a"
 
         
         jobName.text = name
@@ -75,13 +76,13 @@ class JobDetailsViewController: UIViewController {
         DueDateLabel.text = dateFormatter.string(from: dueDate)
         
         //add some logic for the job status image - should be same as parent
-        if status == "not_started" {
+        if status == "Not started" {
             //not started. make color red
             JobStatusImage.image = UIImage(named: "not_started_status_image")
-        } else if status == "in_progress" {
+        } else if status == "In progress" {
             //in progress. make color yellow
             JobStatusImage.image = UIImage(named: "in_progress_status_image")
-        } else if status == "completed" {
+        } else if status == "Completed" {
             //completed. make color green
             JobStatusImage.image = UIImage(named: "completed_status_image")
         }
@@ -101,7 +102,7 @@ class JobDetailsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let query = PFQuery(className:"Job")
-        query.includeKeys(["assigned_to", "created_by"])
+        query.includeKeys(["assigned_to", "created_by", "activity"])
         query.getObjectInBackground(withId: jobId!) { (job, error) in
             if error == nil {
                 let employee = job?["assigned_to"] as? PFUser
@@ -109,8 +110,9 @@ class JobDetailsViewController: UIViewController {
                 let date = job?["due_date"] as? Date
                 let dueDate = date!
                 let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "MM/dd/YYYY"
-                
+                dateFormatter.dateFormat = "EEEE, MMM d, yyyy h:mm a"
+                let x = (job?["activity"] as? [PFObject]) ?? []
+                let i = x.count
                 self.JobDescriptionLabel.text = job?["description"] as? String
                 self.jobName.text = job?["name"] as? String
                 self.employeeNameLabel.text = employee?.username
@@ -121,6 +123,23 @@ class JobDetailsViewController: UIViewController {
                 self.desc = job?["description"] as? String
                 self.assignedTo = employee
                 self.dueDate = date
+                
+                if(i > 0){
+                    let y = x[i - 1]
+                    self.status = y["status"] as? String
+                }
+
+                //add some logic for the job status image - should be same as parent
+                if self.status == "Not started" {
+                    //not started. make color red
+                    self.JobStatusImage.image = UIImage(named: "not_started_status_image")
+                } else if self.status == "In progress" {
+                    //in progress. make color yellow
+                    self.JobStatusImage.image = UIImage(named: "in_progress_status_image")
+                } else if self.status == "Completed" {
+                    //completed. make color green
+                    self.JobStatusImage.image = UIImage(named: "completed_status_image")
+                }
             }
         }
     }
