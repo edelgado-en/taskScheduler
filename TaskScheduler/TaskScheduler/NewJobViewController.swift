@@ -143,7 +143,16 @@ class NewJobViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
         //create a border for the description textView
         DescriptionInput.layer.borderWidth = 1
-        DescriptionInput.layer.borderColor = UIColor.black.cgColor
+        DescriptionInput.layer.borderColor = UIColor.lightGray.cgColor
+        NameInput.layer.borderWidth = 1
+        NameInput.layer.borderColor = UIColor.lightGray.cgColor
+        //round the buttons
+        saveButton.layer.cornerRadius = 15
+        saveButton.layer.masksToBounds = true
+        showDismissButton.layer.cornerRadius = 15
+        showDismissButton.layer.masksToBounds = true
+        editButton.layer.cornerRadius = 15
+        editButton.layer.masksToBounds = true
         
         
         let query = PFUser.query()

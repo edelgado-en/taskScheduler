@@ -69,12 +69,21 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         //let post = posts[indexPath.section]
         let comments = (job?["comments"] as? [PFObject]) ?? []
         
-            let cell = table.dequeueReusableCell(withIdentifier: "commentCell") as! CommentCell
-            let comment = comments[indexPath.row]
-            cell.commentLabel.text = comment["text"] as? String
-            let user = comment["author"] as! PFUser
-            cell.userNameLabel.text = user.username
-            return cell
+        let cell = table.dequeueReusableCell(withIdentifier: "commentCell") as! CommentCell
+        let comment = comments[indexPath.row]
+        cell.commentLabel.text = comment["text"] as? String
+        let user = comment["author"] as! PFUser
+        cell.userNameLabel.text = user.username
+
+    
+        
+        //let dateFormatter = DateFormatter()
+        //dateFormatter.dateFormat = "EEEE, MMM d, yyyy h:mm a"
+        //let timeStamp = comment["createdAt"] as! Date
+        //print(comment["createdAt"] as? Date ?? "Date not found")
+        //turn date value into string
+        //cell.timeStampLabel.text = dateFormatter.string(from: timeStamp)
+        return cell
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
