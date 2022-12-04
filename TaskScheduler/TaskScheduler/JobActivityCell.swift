@@ -10,11 +10,11 @@ import UIKit
 class JobActivityCell: UITableViewCell {
 
     
-    @IBOutlet weak var statusLabel: UILabel!
-    
     @IBOutlet weak var dateLabel: UILabel!
     
     @IBOutlet weak var userLabel: UILabel!
+    
+    @IBOutlet weak var statusImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

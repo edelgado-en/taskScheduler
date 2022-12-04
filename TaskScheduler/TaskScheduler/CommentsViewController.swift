@@ -104,6 +104,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         query.getObjectInBackground(withId: jobId!) { (job, error) in
             if error == nil {
                 self.jobNameLabel.text = job?["name"] as? String
+                print("This is the name in comment: ", self.jobNameLabel)
             }
         }
     }

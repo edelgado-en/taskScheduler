@@ -70,8 +70,8 @@ class JobDetailsViewController: UIViewController {
         managerNameLabel.text = createdBy?.username
         JobDescriptionLabel.text = desc
         //probably get rid of this boarder stuff. Looks kind of ugly
-        JobDescriptionLabel.layer.borderColor = UIColor.black.cgColor
-        JobDescriptionLabel.layer.borderWidth = 0.5
+        //JobDescriptionLabel.layer.borderColor = UIColor.black.cgColor
+        //JobDescriptionLabel.layer.borderWidth = 0.5
         //turn date value into string
         DueDateLabel.text = dateFormatter.string(from: dueDate)
         

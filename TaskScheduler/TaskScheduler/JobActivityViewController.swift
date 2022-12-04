@@ -25,6 +25,9 @@ class JobActivityViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.delegate = self
         tableView.dataSource = self
         
+        //tells the tab bar controller which tab to show first
+        self.tabBarController?.selectedIndex = 1
+        
         let query = PFQuery(className:"Job")
         query.includeKeys(["activity", "created_by.username", "username"])
         query.getObjectInBackground(withId: jobId!) { (job, error) in
@@ -57,6 +60,8 @@ class JobActivityViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        
+        
         let query = PFQuery(className:"Job")
         query.includeKeys(["activity", "activity.username"])
         query.getObjectInBackground(withId: jobId!) { (job, error) in
@@ -85,9 +90,20 @@ class JobActivityViewController: UIViewController, UITableViewDataSource, UITabl
         let user = activity["username"] as! PFUser
         let dateFormatter = DateFormatter()
         let createdDate = activity.createdAt!
+        
+        
+        if activity["status"] as! String  == "Not started" {
+            //not started. make color red
+            cell.statusImage.image = UIImage(named: "not_started_status_image")
+        } else if activity["status"] as! String == "In progress" {
+            //in progress. make color yellow
+            cell.statusImage.image = UIImage(named: "in_progress_status_image")
+        } else if activity["status"] as! String == "Completed" {
+            //completed. make color green
+            cell.statusImage.image = UIImage(named: "completed_status_image")
+        }
 
         dateFormatter.dateFormat = "EEEE, MMM d, yyyy h:mm a"
-        cell.statusLabel.text = activity["status"] as? String
         cell.userLabel.text = user.username
         cell.dateLabel.text = dateFormatter.string(from: createdDate)
         return cell
