@@ -45,7 +45,9 @@ The job scheduler app is designed to track, organize, and manage the different j
 
 - [x] User can edit a job
 
-* User employee clicks on a job from the job listing and gets redirected to the job details view. User can complete or set an in-progress individual tasks and or complete the whole job by clicking the corresponding buttons. Once a job is completed, it won’t be visible in the job listing for that user. A task should have an identity such as having an id, name, and status so that both employees and managers can view the state of a task and know which job it is correlated with. As an employee, I want to be able to change the status of the tasks in each job so that I can report the progress of the overall job.
+- [x] User can change status of a job to in progress or complete from the job details view
+
+- [x] overall UI enhancements to all screens in preparation for demo day
 
 
 **Optional Nice-to-have Stories**
@@ -478,6 +480,15 @@ Employee
 <img src="http://g.recordit.co/uoeQRwyor2.gif" width=600>
 
 
+## Unit 13 Milestone 
+
+### Completed user stories
 
 
+- [x] User can change status of a job to in progress or complete from the job details view
 
+- [x] Overall UI enhancements to all screens in preparation for demo day
+
+
+### Gif Showing Progress
+<img src="http://g.recordit.co/VLPJWgCQAZ.gif" width=600>
